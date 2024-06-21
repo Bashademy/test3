@@ -11,6 +11,11 @@ body {
   .container {
     text-align: center;
   }
+
+   .logo-image {
+    height: 350px;
+    width: auto;
+  }
   
   .digit-container {
     display: flex;
