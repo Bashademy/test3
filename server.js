@@ -14,7 +14,7 @@ io.on('connection', (socket) => {
 
   socket.on('roll', () => {
     const randomNumber = generateRandomNumber();
-    io.emit('updateDisplay', randomNumber);
+    io.emit('updateDisplay', randomNumber); 
   });
 
   socket.on('refresh', () => {
@@ -49,6 +49,8 @@ const PORT = process.env.PORT || 3000;
 http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
 
 
 
