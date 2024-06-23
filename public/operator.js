@@ -26,21 +26,33 @@ socket.on('resetDisplay', () => {
 });
 
 // Function to update the digit display
-function updateDigit(digitElement, targetDigit) {
+function updateDigit(digitElement, targetDigit, digitInterval = 50) {
   let currentDigit = 0;
   let startTime = null;
+  let lastDigitChangeTime = null;
 
   function animate(time) {
-    if (!startTime) startTime = time;
+    if (!startTime) {
+      startTime = time;
+      lastDigitChangeTime = time;
+    }
 
     const elapsedTime = time - startTime;
-    digitElement.textContent = digits[currentDigit];
-    currentDigit = (currentDigit + 1) % digits.length;
+    const timeSinceLastDigitChange = time - lastDigitChangeTime;
 
+    // Check if it's time to change to the next digit
+    if (timeSinceLastDigitChange >= digitInterval) {
+      digitElement.textContent = digits[currentDigit];
+      currentDigit = (currentDigit + 1) % digits.length;
+      lastDigitChangeTime = time;
+    }
+
+    // Continue animation if less than 5 seconds have passed or if the current digit is not the target digit
     if (elapsedTime < 5000 || currentDigit !== targetDigit) {
       requestAnimationFrame(animate);
     } else {
-      digitElement.textContent = targetDigit;  // Ensure the final digit is correct
+      // Ensure the final digit is correct
+      digitElement.textContent = targetDigit;
     }
   }
 
@@ -48,7 +60,14 @@ function updateDigit(digitElement, targetDigit) {
 }
 
 
+
 const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+
+
+
+
+
 
 
 
