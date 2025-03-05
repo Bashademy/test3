@@ -1,9 +1,9 @@
 const socket = io();
-const digit1Element = document.getElementById('digit1');
-const digit2Element = document.getElementById('digit2');
-const digit3Element = document.getElementById('digit3');
+const digit1Element = document.getElementById("digit1");
+const digit2Element = document.getElementById("digit2");
+const digit3Element = document.getElementById("digit3");
 
-socket.on('updateDisplay', ({ digit1, digit2, digit3 }) => {
+socket.on("updateDisplay", ({ digit1, digit2, digit3 }) => {
   updateDigit(digit1Element, digit1);
   updateDigit(digit2Element, digit2);
   updateDigit(digit3Element, digit3);

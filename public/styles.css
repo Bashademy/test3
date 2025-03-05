@@ -1,85 +1,83 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #1a315b;
-  }
-  
-  .container {
-    text-align: center;
-  }
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("Theme.jpg"); /* Replace with your actual file path */
+  background-size: cover; /* Ensures it covers the full page */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+  background-position: center;
+}
 
-   .logo-image {
-    height: 350px;
-    width: auto;
-  }
-  
-  .digit-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .digit-display {
-    font-size: 48px;
-    font-weight: bold;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 0 10px;
-  }
+.container {
+  text-align: center;
+  position: relative;
+  left: 5%;
+}
 
+.logo-image {
+  height: 350px;
+  width: auto;
+}
 
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.digit-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-  #rollButton {
-    margin-bottom: 10px;
-  }
-  
-  #rollButton {
-    font-size: 16px;
-    width: 243px;
-    padding: 10px 20px;
-    background-color: #1a315b;
-    color: white;
-    border-color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.digit-display {
+  font-size: 48px;
+  font-weight: bold;
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 10px;
+}
 
-  #refreshButton {
-    font-size: 16px;
-    width: 243px;
-    padding: 10px 20px;
-    background-color: #1a315b;
-    color: white;
-    border-color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #rollButton:hover {
-    background-color: black;
-    color: white;
-  }
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  #refreshButton:hover {
-    background-color: black;
-    color: white;
-  }
+#rollButton {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  width: 243px;
+  padding: 10px 20px;
+  background-color: white;
+  color: red;
+  border-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+#refreshButton {
+  font-size: 20px;
+  font-weight: bold;
+  width: 243px;
+  padding: 10px 20px;
+  background-color: white;
+  color: red;
+  border-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+#rollButton:hover {
+  background-color: black;
+  color: white;
+}
 
-  
-
- 
+#refreshButton:hover {
+  background-color: black;
+  color: white;
+}

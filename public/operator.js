@@ -1,32 +1,53 @@
-const socket = io();
-const rollButton = document.getElementById('rollButton');
-const refreshButton = document.getElementById('refreshButton');
-const digit1Element = document.getElementById('digit1');
-const digit2Element = document.getElementById('digit2');
-const digit3Element = document.getElementById('digit3');
+//const socket = io();
+const rollButton = document.getElementById("rollButton");
+const refreshButton = document.getElementById("refreshButton");
+const digit1Element = document.getElementById("digit1");
+const digit2Element = document.getElementById("digit2");
+const digit3Element = document.getElementById("digit3");
 
-rollButton.addEventListener('click', () => {
-  socket.emit('roll');
+rollButton.addEventListener("click", () => {
+  generateRandomNumber();
 });
 
-refreshButton.addEventListener('click', () => {
-  socket.emit('refresh');
-});
-
-socket.on('updateDisplay', ({ digit1, digit2, digit3 }) => {
-  updateDigit(digit1Element, digit1);
-  updateDigit(digit2Element, digit2);
-  updateDigit(digit3Element, digit3);
-});
-
-socket.on('resetDisplay', () => {
+refreshButton.addEventListener("click", () => {
   digit1Element.innerHTML = 0;
   digit2Element.innerHTML = 0;
   digit3Element.innerHTML = 0;
 });
+const previouslyGeneratedNumbers = new Set();
+const generateRandomNumber = () => {
+  // Array of digits to simulate the rolling effect
+
+  let digit1, digit2, digit3;
+  let randomNumber;
+
+  do {
+    randomNumber = Math.floor(Math.random() * 240) + 1;
+    digit1 = Math.floor(randomNumber / 100);
+    digit2 = Math.floor((randomNumber % 100) / 10);
+    digit3 = randomNumber % 10;
+  } while (previouslyGeneratedNumbers.has(randomNumber));
+
+  previouslyGeneratedNumbers.add(randomNumber);
+  updateDigit(digit1Element, digit1);
+  updateDigit(digit2Element, digit2);
+  updateDigit(digit3Element, digit3);
+};
+
+// socket.on("updateDisplay", ({ digit1, digit2, digit3 }) => {
+//   updateDigit(digit1Element, digit1);
+//   updateDigit(digit2Element, digit2);
+//   updateDigit(digit3Element, digit3);
+// });
+
+// socket.on("resetDisplay", () => {
+//   digit1Element.innerHTML = 0;
+//   digit2Element.innerHTML = 0;
+//   digit3Element.innerHTML = 0;
+// });
 
 // Function to update the digit display
-function updateDigit(digitElement, targetDigit, digitInterval = 50) {
+function updateDigit(digitElement, targetDigit, digitInterval = 100) {
   let currentDigit = 0;
   let startTime = null;
   let lastDigitChangeTime = null;
@@ -59,16 +80,4 @@ function updateDigit(digitElement, targetDigit, digitInterval = 50) {
   requestAnimationFrame(animate);
 }
 
-
-
 const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-
-
-
-
-
-
-
-
-

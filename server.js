@@ -1,28 +1,52 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-const path = require('path');
+const http = require("http");
+const server = app.listen(3000);
+const { Server } = require("socket.io");
+const { createServer } = require("http");
 
-app.use(express.static('public'));
+console.log(`Server is running on port 3000`);
+const socket = require("socket.io");
+
+const path = require("path");
+
+app.use(express.static("public"));
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  cors: {
+    origin: "http://localhost:5500",
+    // or with an array of origins
+    // origin: ["https://my-frontend.com", "https://my-other-frontend.com", "http://localhost:3000"],
+    credentials: true,
+  },
+});
 
 // Set to store the previously generated numbers
 const previouslyGeneratedNumbers = new Set();
 
-io.on('connection', (socket) => {
-  console.log('A user connected');
+// io.sockets.on("connection", newConnection);
 
-  socket.on('roll', () => {
+// function newConnection(socket) {
+//   console.log("New connection: " + socket.id);
+// }
+
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  socket.on("roll", () => {
+    console.log("Rolling the number");
     const randomNumber = generateRandomNumber();
-    io.emit('updateDisplay', randomNumber); 
+    console.log(randomNumber);
+    io.emit("updateDisplay", randomNumber);
   });
 
-  socket.on('refresh', () => {
-    io.emit('resetDisplay', 0);
+  socket.on("refresh", () => {
+    io.emit("resetDisplay", 0);
   });
 
-  socket.on('disconnect', () => {
-    console.log('A user disconnected');
+  socket.on("disconnect", () => {
+    console.log("A user disconnected");
   });
 });
 
@@ -34,7 +58,7 @@ const generateRandomNumber = () => {
   let randomNumber;
 
   do {
-    randomNumber = Math.floor(Math.random() * 810) + 1;
+    randomNumber = Math.floor(Math.random() * 240) + 1;
     digit1 = Math.floor(randomNumber / 100);
     digit2 = Math.floor((randomNumber % 100) / 10);
     digit3 = randomNumber % 10;
@@ -45,20 +69,7 @@ const generateRandomNumber = () => {
   return { digit1, digit2, digit3 };
 };
 
-const PORT = process.env.PORT || 3000;
-http.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
+// const PORT = process.env.PORT || 3000;
+// server.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
