@@ -29,25 +29,13 @@ const generateRandomNumber = () => {
   } while (previouslyGeneratedNumbers.has(randomNumber));
 
   previouslyGeneratedNumbers.add(randomNumber);
-  updateDigit(digit1Element, digit1);
-  updateDigit(digit2Element, digit2);
-  updateDigit(digit3Element, digit3);
+  updateDigit(digit1Element, digit1, digits1);
+  updateDigit(digit2Element, digit2, digits2);
+  updateDigit(digit3Element, digit3, digits3);
 };
 
-// socket.on("updateDisplay", ({ digit1, digit2, digit3 }) => {
-//   updateDigit(digit1Element, digit1);
-//   updateDigit(digit2Element, digit2);
-//   updateDigit(digit3Element, digit3);
-// });
-
-// socket.on("resetDisplay", () => {
-//   digit1Element.innerHTML = 0;
-//   digit2Element.innerHTML = 0;
-//   digit3Element.innerHTML = 0;
-// });
-
 // Function to update the digit display
-function updateDigit(digitElement, targetDigit, digitInterval = 100) {
+function updateDigit(digitElement, targetDigit, digits, digitInterval = 150) {
   let currentDigit = 0;
   let startTime = null;
   let lastDigitChangeTime = null;
@@ -80,4 +68,6 @@ function updateDigit(digitElement, targetDigit, digitInterval = 100) {
   requestAnimationFrame(animate);
 }
 
-const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const digits1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const digits2 = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+const digits3 = [5, 4, 3, 2, 1, 0, 9, 8, 7, 6];
