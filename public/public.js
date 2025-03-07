@@ -1,27 +1,12 @@
 const socket = io("http://localhost:5000/");
-const rollButton = document.getElementById("rollButton");
-const refreshButton = document.getElementById("refreshButton");
 const digit1Element = document.getElementById("digit1");
 const digit2Element = document.getElementById("digit2");
 const digit3Element = document.getElementById("digit3");
-
-rollButton.addEventListener("click", () => {
-  generateNewNumber();
-});
 
 socket.on("updateNumber", (number) => {
   updateDigit(digit1Element, number.digit1, digits1);
   updateDigit(digit2Element, number.digit2, digits2);
   updateDigit(digit3Element, number.digit3, digits3);
-});
-
-// Request a new number
-function generateNewNumber() {
-  socket.emit("roll");
-}
-
-refreshButton.addEventListener("click", () => {
-  reset();
 });
 
 socket.on("resetDisplay", (number) => {
@@ -30,11 +15,7 @@ socket.on("resetDisplay", (number) => {
   digit3Element.innerHTML = number;
 });
 
-// Request a new number
-function reset() {
-  socket.emit("refresh");
-}
-
+// Function to update the digit display
 function updateDigit(digitElement, targetDigit, digits, digitInterval = 60) {
   let currentDigit = 0;
   let startTime = null;
