@@ -35,7 +35,7 @@ const generateRandomNumber = () => {
 };
 
 // Function to update the digit display
-function updateDigit(digitElement, targetDigit, digits, digitInterval = 170) {
+function updateDigit(digitElement, targetDigit, digits, digitInterval = 60) {
   let currentDigit = 0;
   let startTime = null;
   let lastDigitChangeTime = null;
@@ -56,8 +56,8 @@ function updateDigit(digitElement, targetDigit, digits, digitInterval = 170) {
       lastDigitChangeTime = time;
     }
 
-    // Continue animation if less than 5 seconds have passed or if the current digit is not the target digit
-    if (elapsedTime < 5000 || currentDigit !== targetDigit) {
+    // Continue animation if less than 15 seconds have passed or if the current digit is not the target digit
+    if (elapsedTime < 15000 || currentDigit !== targetDigit) {
       requestAnimationFrame(animate);
     } else {
       // Ensure the final digit is correct
