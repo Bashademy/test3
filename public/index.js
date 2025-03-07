@@ -35,7 +35,7 @@ const generateRandomNumber = () => {
 };
 
 // Function to update the digit display
-function updateDigit(digitElement, targetDigit, digits, digitInterval = 150) {
+function updateDigit(digitElement, targetDigit, digits, digitInterval = 60) {
   let currentDigit = 0;
   let startTime = null;
   let lastDigitChangeTime = null;
